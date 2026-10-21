@@ -1,0 +1,73 @@
+{
+  "name": "genpark-agentic-commerce-ltl-freight-nmfc-density-reclassifier-skill",
+  "version": "1.0.0",
+  "title": "LTL Freight NMFC Density & Reclassification Dispute Arbiter Skill",
+  "description": "NMFC (National Motor Freight Classification) density rating calculator, dimensional weight vs actual weight re-class, and LTL freight overcharge dispute generator. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "agentic-commerce",
+  "topics": [
+    "ltl-freight",
+    "nmfc-classification",
+    "freight-density",
+    "carrier-disputes",
+    "agentic-commerce",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "calculate_freight_density_and_nmfc_class",
+      "description": "Calculate shipment cubic feet, density (PCF), and mapped National Motor Freight Classification (NMFC) tier.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "length_inches": {
+            "type": "number"
+          },
+          "width_inches": {
+            "type": "number"
+          },
+          "height_inches": {
+            "type": "number"
+          },
+          "weight_lbs": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "length_inches",
+          "width_inches",
+          "height_inches",
+          "weight_lbs"
+        ]
+      }
+    },
+    {
+      "name": "audit_carrier_w_and_r_chargeback",
+      "description": "Audit carrier Weight & Inspection (W&R) re-classification fee chargeback against verified packaging spec.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "carrier_billed_class": {
+            "type": "integer"
+          },
+          "actual_verified_class": {
+            "type": "integer"
+          },
+          "billed_rate_usd": {
+            "type": "number"
+          },
+          "fuel_surcharge_pct": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "carrier_billed_class",
+          "actual_verified_class",
+          "billed_rate_usd"
+        ]
+      }
+    }
+  ]
+}
